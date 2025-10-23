@@ -12,7 +12,7 @@ pool:
 
 variables:
   azureSubscription: 'azure-connection-cicd'
-  webAppName: 'icinema-api-demo'
+  webAppName: 'icinema-api-demo2'
   resourceGroup: 'rg-icinema-academic'
   # AGREGAR ESTA VARIABLE CRÍTICA:
   imageRepository: 'daldeoscoder/icinema-api'
