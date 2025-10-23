@@ -3,7 +3,7 @@ trigger: none
 resources:
   pipelines:
     - pipeline: ci-pipeline
-      source: 'icinema-ci-pipeline'  # ← NOMBRE EXACTO que le pondrás al pipeline CI
+      source: 'icinema-ci-pipeline'
       trigger:
         branches: ['main']
 
@@ -14,6 +14,8 @@ variables:
   azureSubscription: 'azure-connection-cicd'
   webAppName: 'icinema-api-demo'
   resourceGroup: 'rg-icinema-academic'
+  # AGREGAR ESTA VARIABLE CRÍTICA:
+  imageRepository: 'daldeoscoder/icinema-api'
 
 stages:
   - stage: Deploy
@@ -30,7 +32,8 @@ stages:
                   inputs:
                     azureSubscription: $(azureSubscription)
                     appName: $(webAppName)
-                    containers: '$(imageRepository):$(Build.BuildId)'
+                    # CORREGIR: Usar el tag del pipeline CI
+                    containers: '$(imageRepository):$(resources.pipeline.ci-pipeline.runID)'
                     appSettings: |
                       -name DATABASE_URL -value "$(DATABASE_URL)"
                       -name WEBSITES_PORT -value "8000"
