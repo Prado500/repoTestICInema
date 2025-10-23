@@ -11,6 +11,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
+  - group: app-settings
   azureSubscription: 'azure-connection-cicd'
   webAppName: 'icinema-api-demo'
   resourceGroup: 'rg-icinema-academic'
