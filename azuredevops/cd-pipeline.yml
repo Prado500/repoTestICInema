@@ -1,0 +1,36 @@
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: ci-pipeline
+      source: 'icinema-ci-pipeline'  # ← NOMBRE EXACTO que le pondrás al pipeline CI
+      trigger:
+        branches: ['main']
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureSubscription: 'azure-connection-cicd'
+  webAppName: 'icinema-api-demo'
+  resourceGroup: 'rg-icinema-academic'
+
+stages:
+  - stage: Deploy
+    displayName: Deploy to Azure
+    jobs:
+      - deployment: Deploy
+        environment: 'production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebAppContainer@1
+                  displayName: 'Deploy to Azure Web App'
+                  inputs:
+                    azureSubscription: $(azureSubscription)
+                    appName: $(webAppName)
+                    containers: '$(imageRepository):$(Build.BuildId)'
+                    appSettings: |
+                      -name DATABASE_URL -value "$(DATABASE_URL)"
+                      -name WEBSITES_PORT -value "8000"
