@@ -6,8 +6,10 @@ from contextlib import asynccontextmanager
 import os
 from datetime import datetime
 import socket
-from . import crud, models, schemas
-from .database import engine, get_db
+import crud
+import models
+import schemas
+from database import engine, get_db
 
 # Esta función 'lifespan' se ejecuta al iniciar la aplicación.
 # Aquí le decimos a SQLAlchemy que cree todas las tablas definidas en nuestros modelos.
@@ -75,78 +77,16 @@ async def delete_existing_movie(movie_id: int, db: AsyncSession = Depends(get_db
 #      ENDPOINTS PARA VALIDACIÓN CI/CD  
 # =============================================================================
 
-
-
 @app.get("/health", tags=["Health Check"])
 async def health_check():
     """
-    Endpoint de salud básico - Verifica que la API está funcionando
+    Health check básico que siempre devuelve 200 y un mensaje de estado.
     """
-    return {
-        "status": "healthy",
-        "timestamp": datetime.now().isoformat(),
-        "service": "ICinema API",
-        "environment": "production",
-        "hostname": socket.gethostname()
-    }
+    return {"message": "ICinema esta vivo", "status": 200}
 
-@app.get("/version", tags=["CI/CD Evidence"])
-async def get_version():
-    """
-    Endpoint para evidenciar cambios automáticos del CD
-    El color cambia automáticamente con cada despliegue
-    """
-    return {
-        "version": "2.0.0",
-        "build_id": os.getenv('BUILD_BUILDID', 'local'),
-        "build_number": os.getenv('BUILD_BUILDNUMBER', 'dev'),
-        "deployment_date": datetime.now().isoformat(),
-        "message": "🚀 CD Funcionando - Despliegue Automático",
-        "feature": "Color: AZUL",  # ⭐ Esto cambiará automáticamente
-        "environment": "Azure Web App",
-        "evidence": "Este mensaje cambia con cada despliegue automático"
-    }
 
-@app.get("/cd-status", tags=["CD Validation"])
-async def cd_status():
-    """
-    Endpoint específico para validar el Despliegue Continuo
-    """
-    return {
-        "cd_working": True,
-        "last_deployment": datetime.now().isoformat(),
-        "deployment_trigger": "GitHub Push" if os.getenv('BUILD_REASON') == 'IndividualCI' else "Manual",
-        "pipeline_id": os.getenv('BUILD_BUILDID', 'unknown'),
-        "validation": "CD_CONFIGURADO_CORRECTAMENTE",
-        "next_step": "Hacer commit y verificar cambio automático en /version"
-    }
 
-@app.get("/full-status", tags=["Full CI/CD Status"])
-async def full_status():
-    """
-    Estado completo del CI/CD
-    """
-    return {
-        "ci_status": "completed",
-        "cd_status": "deployed",
-        "current_environment": "production",
-        "api_status": "operational",
-        "database_status": "connected",
-        "last_ci_run": os.getenv('BUILD_BUILDNUMBER', 'unknown'),
-        "auto_deployment": True,
-        "evidence_timestamp": datetime.now().isoformat()
-    }
 
-def newFunctionality(lista):
-    n = len(lista)
-    # Recorre todos los elementos de la lista
-    for i in range(n - 1):
-        # Compara elementos adyacentes
-        for j in range(0, n - i - 1):
-            # Intercambia si el elemento actual es mayor que el siguiente
-            if lista[j] > lista[j + 1]:
-                lista[j], lista[j + 1] = lista[j + 1], lista[j]
-    return lista
 
 
 
