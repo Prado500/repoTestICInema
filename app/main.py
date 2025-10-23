@@ -136,3 +136,23 @@ async def full_status():
         "auto_deployment": True,
         "evidence_timestamp": datetime.now().isoformat()
     }
+
+def newFunctionality(lista):
+    n = len(lista)
+    # Recorre todos los elementos de la lista
+    for i in range(n - 1):
+        # Compara elementos adyacentes
+        for j in range(0, n - i - 1):
+            # Intercambia si el elemento actual es mayor que el siguiente
+            if lista[j] > lista[j + 1]:
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+    return lista
+
+
+
+
+
+
+
+
+
