@@ -11,7 +11,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: app-settings
   azureSubscription: 'azure-connection-cicd'
   webAppName: 'icinema-api-demo'
   resourceGroup: 'rg-icinema-academic'
@@ -34,7 +33,7 @@ stages:
                     azureSubscription: $(azureSubscription)
                     appName: $(webAppName)
                     # CORREGIR: Usar el tag del pipeline CI
-                    containers: '$(imageRepository):$(resources.pipeline.ci-pipeline.runID)'
+                    containers: '$(imageRepository):latest'
                     appSettings: |
                       -name DATABASE_URL -value "$(DATABASE_URL)"
                       -name WEBSITES_PORT -value "8000"
