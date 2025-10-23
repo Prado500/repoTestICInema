@@ -2,7 +2,10 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
-from . import models, schemas
+#from . import models, schemas
+
+import models
+import schemas
 
 async def get_movie(db: AsyncSession, movie_id: int):
     """

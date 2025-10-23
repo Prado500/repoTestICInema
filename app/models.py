@@ -4,7 +4,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, Text
 from sqlalchemy.dialects.postgresql import JSONB # Importamos el tipo JSONB
 
-from .database import Base
+from database import Base
 
 class Proveedor(Base):
     """
