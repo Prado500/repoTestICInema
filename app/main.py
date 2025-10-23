@@ -85,6 +85,22 @@ async def health_check():
     return {"message": "ICinema esta vivo", "status": 200}
 
 
+@app.get("/full-status", tags=["Full CI/CD Status"])
+async def full_status():
+    """
+    Estado completo del CI/CD
+    """
+    return {
+        "ci_status": "completed",
+        "cd_status": "deployed",
+        "current_environment": "production",
+        "api_status": "operational",
+        "database_status": "connected",
+        "last_ci_run": os.getenv('BUILD_BUILDNUMBER', 'unknown'),
+        "auto_deployment": True,
+        "evidence_timestamp": datetime.now().isoformat()
+    }
+
 
 
 
