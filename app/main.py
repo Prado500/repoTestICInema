@@ -84,12 +84,6 @@ async def health_check():
     """
     return {"message": "ICinema esta vivo", "status": 200}
 
-@app.get("/health2", tags=["Health Check"])
-async def health_check():
-    """
-    Health check básico que siempre devuelve 200 y un mensaje de estado.
-    """
-    return {"message": "Recuperé el control sobre ICinema", "status": 200}
 
 
 @app.get("/full-status", tags=["Full CI/CD Status"])
