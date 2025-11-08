@@ -7,7 +7,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  dockerRegistryServiceConnection: 'dockerhub-connection'
+  dockerRegistryServiceConnection: 'SC-DR-TEST-ICINEMA'
   imageRepository: 'daldeoscoder/icinema-api'
   containerRegistry: 'index.docker.io'
   dockerfilePath: '**/Dockerfile'
