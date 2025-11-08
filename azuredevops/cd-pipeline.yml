@@ -3,7 +3,7 @@ trigger: none
 resources:
   pipelines:
     - pipeline: ci-pipeline
-      source: 'icinema-ci-pipeline'
+      source: 'test-icinema-ci-pipeline'
       trigger:
         branches: ['main']
 
