@@ -82,7 +82,7 @@ async def health_check():
     """
     Health check básico que siempre devuelve 200 y un mensaje de estado.
     """
-    return {"message": "ICinema esta vivo", "status": 200}
+    return {"message": "ICinema segundo entorno, esta vivo!", "status": 200}
 
 
 
