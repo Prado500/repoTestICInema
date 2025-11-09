@@ -11,15 +11,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: 'VG-TEST-ICINEMA'
-  - name: azureSubscription
-    value: 'SC-ARM-TEST-ICINEMA'
-  - name: webAppName
-    value: 'SERVIDOR-API-TEST'
-  - name: resourceGroup
-    value: 'test-icinema-academic'
-  - name: imageRepository
-    value: 'daldeoscoder/icinema-api'
+  azureSubscription: 'SC-ARM-TEST-ICINEMA'
+  webAppName: 'SERVIDOR-API-TEST'
+  resourceGroup: 'test-icinema-academic'
+
+  imageRepository: 'daldeoscoder/icinema-api'
 
 stages:
   - stage: Deploy
@@ -36,6 +32,7 @@ stages:
                   inputs:
                     azureSubscription: $(azureSubscription)
                     appName: $(webAppName)
+                    # CORREGIR: Usar el tag del pipeline CI
                     containers: '$(imageRepository):latest'
                     appSettings: |
                       -name DATABASE_URL -value "$(DATABASE_URL)"
