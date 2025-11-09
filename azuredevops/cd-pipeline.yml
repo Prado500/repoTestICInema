@@ -11,9 +11,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  azureSubscription: 'azure-connection-cicd'
-  webAppName: 'icinema-api-demo2'
-  resourceGroup: 'rg-icinema-academic'
+  - group: 'VG-TEST-ICINEMA'
+  azureSubscription: 'SC-ARM-TEST-ICINEMA'
+  webAppName: 'SERVIDOR-API-TEST'
+  resourceGroup: 'test-icinema-academic'
   # AGREGAR ESTA VARIABLE CRÍTICA:
   imageRepository: 'daldeoscoder/icinema-api'
 
