@@ -11,11 +11,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: 'VG-TEST-ICINEMA'
+  group: 'VG-TEST-ICINEMA'
   azureSubscription: 'SC-ARM-TEST-ICINEMA'
   webAppName: 'SERVIDOR-API-TEST'
   resourceGroup: 'test-icinema-academic'
-  # AGREGAR ESTA VARIABLE CRÍTICA:
+
   imageRepository: 'daldeoscoder/icinema-api'
 
 stages:
